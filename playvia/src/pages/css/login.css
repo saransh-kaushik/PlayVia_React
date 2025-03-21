@@ -1,0 +1,68 @@
+/* Background Styling */
+.login-container {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background: url('/background.jpg') no-repeat center center/cover;
+  }
+  
+  /* Login Box */
+  .login-box {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    width: 350px;
+    color: white;
+    text-align: center;
+  }
+  
+  /* Heading */
+  .login-box h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+  
+  /* Input Fields */
+  .login-box input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 5px;
+    background: #222;
+    color: white;
+  }
+  
+  /* Button */
+  .login-box button {
+    width: 100%;
+    padding: 10px;
+    background: red;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .login-box button:hover {
+    background: darkred;
+  }
+  
+  /* Links */
+  .login-links {
+    margin-top: 10px;
+  }
+  
+  .login-links a {
+    color: lightblue;
+    text-decoration: none;
+  }
+  
+  .login-links a:hover {
+    text-decoration: underline;
+  }
+  
