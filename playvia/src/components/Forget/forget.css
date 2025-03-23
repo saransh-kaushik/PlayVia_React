@@ -1,0 +1,55 @@
+.forget-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .forget-box {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    width: 350px;
+    color: white;
+  }
+  
+  .forget-box h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .forget-box input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: none;
+    border-radius: 4px;
+    background: #333;
+    color: white;
+  }
+  
+  .forget-box button {
+    width: 100%;
+    background: red;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+  
+  .forget-box button:hover {
+    background: darkred;
+  }
+  
+  .back-link {
+    margin-top: 10px;
+  }
+  
+  .back-link a {
+    color: white;
+    text-decoration: underline;
+  }
+  

@@ -1,0 +1,12 @@
+{
+  "name": "playvia_react",
+  "version": "1.0.0",
+  "description": "In the project directory, you can run:",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
