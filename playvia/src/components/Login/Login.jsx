@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import loginBG from '../../assets/loginBG.jpg';
-
+//login CSS
 const LoginContainer = styled.div`
   width: 100%;
   min-height: 100vh;
@@ -210,7 +210,7 @@ const Login = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const { login } = useContext(AuthContext);
+  const { login } = useContext(AuthContext); //using auth
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -235,7 +235,7 @@ const Login = () => {
     <LoginContainer>
       <Header>
         <Logo
-          src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"
+          src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" //using netflix logo
           alt="Netflix"
           onClick={() => navigate('/')}
         />
