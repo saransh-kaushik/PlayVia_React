@@ -10,7 +10,7 @@ import EnterOTP from './components/Login/EnterOTP';
 import UserProfile from './components/UserProfile/userProfile';
 import Footer from './components/Footer/Footer';
 import ForgetPassword from './components/Forget/forget';
-
+import AdminDashboard from './admin/admin';
 import { AuthContext, AuthProvider } from './context/AuthContext';
 
 const AppContainer = styled.div`
@@ -46,6 +46,14 @@ function App() {
             <Route path="/signup" element={<SignUp />} />
             <Route path="/enter-otp" element={<EnterOTP />} />
             <Route path="/forget" element={<ForgetPassword />} />
+            <Route
+  path="/admin"
+  element={
+    <ProtectedRoute isAdmin>
+      <AdminDashboard />
+    </ProtectedRoute>
+  }
+/>
             <Route
               path="/profile"
               element={

@@ -275,7 +275,7 @@ const Login = () => {
               <Checkbox type="checkbox" id="remember" />
               <label htmlFor="remember">Remember me</label>
             </CheckboxContainer>
-            <HelpLink href="#">Need help?</HelpLink>
+            <HelpLink href="#" onClick={() => navigate('/forget')}>Forgot Password?</HelpLink>
           </RememberMeRow>
         </Form>
 

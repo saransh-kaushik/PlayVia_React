@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import { FaUserCircle, FaEdit, FaHeart, FaClock, FaCheckCircle } from 'react-icons/fa';
 import { AuthContext } from '../../context/AuthContext';
+import EditProfileModal from './EditProfileModal';
 
 const ProfileContainer = styled.div`
   min-height: 100vh;
@@ -237,16 +238,19 @@ const UserProfile = () => {
   const [activeTab, setActiveTab] = useState('myList');
   const { user } = useContext(AuthContext);
   const [profileImage, setProfileImage] = useState(null);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
   // Mock data - replace with actual data from your backend
-  const mockUser = {
+  const [userData, setUserData] = useState({
     name: 'John Doe',
     email: 'john.doe@example.com',
+    phone: '+1 234 567 8900',
     membership: 'Premium',
     memberSince: 'January 2024',
     nextBilling: 'February 15, 2024',
     plan: 'Premium UHD',
-  };
+    profileImage: null
+  });
 
   const mockMovies = {
     myList: [
@@ -261,14 +265,23 @@ const UserProfile = () => {
     ],
   };
 
-  const handleImageUpload = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setProfileImage(reader.result);
-      };
-      reader.readAsDataURL(file);
+  const handleProfileUpdate = async (updatedData) => {
+    try {
+      // Here you would typically make an API call to update the user's profile
+      // For now, we'll just update the local state
+      setUserData(prev => ({
+        ...prev,
+        ...updatedData
+      }));
+      setProfileImage(updatedData.profileImage);
+      
+      // Update the user context if needed
+      // updateUser(updatedData);
+      
+      return true;
+    } catch (error) {
+      console.error('Error updating profile:', error);
+      throw error;
     }
   };
 
@@ -282,23 +295,14 @@ const UserProfile = () => {
             <FaUserCircle />
           )}
           <ImageOverlay className="overlay">
-            <label htmlFor="profile-upload">
-              <FaEdit />
-              <input
-                id="profile-upload"
-                type="file"
-                accept="image/*"
-                onChange={handleImageUpload}
-                style={{ display: 'none' }}
-              />
-            </label>
+            <FaEdit onClick={() => setIsEditModalOpen(true)} />
           </ImageOverlay>
         </ProfileImage>
 
         <ProfileInfo>
-          <ProfileName>{mockUser.name}</ProfileName>
-          <ProfileEmail>{mockUser.email}</ProfileEmail>
-          <EditButton>
+          <ProfileName>{userData.name}</ProfileName>
+          <ProfileEmail>{userData.email}</ProfileEmail>
+          <EditButton onClick={() => setIsEditModalOpen(true)}>
             <FaEdit /> Edit Profile
           </EditButton>
         </ProfileInfo>
@@ -311,19 +315,23 @@ const UserProfile = () => {
         <AccountInfo>
           <InfoRow>
             <InfoLabel>Membership</InfoLabel>
-            <InfoValue>{mockUser.membership}</InfoValue>
+            <InfoValue>{userData.membership}</InfoValue>
           </InfoRow>
           <InfoRow>
             <InfoLabel>Member Since</InfoLabel>
-            <InfoValue>{mockUser.memberSince}</InfoValue>
+            <InfoValue>{userData.memberSince}</InfoValue>
           </InfoRow>
           <InfoRow>
             <InfoLabel>Next Billing Date</InfoLabel>
-            <InfoValue>{mockUser.nextBilling}</InfoValue>
+            <InfoValue>{userData.nextBilling}</InfoValue>
           </InfoRow>
           <InfoRow>
             <InfoLabel>Current Plan</InfoLabel>
-            <InfoValue>{mockUser.plan}</InfoValue>
+            <InfoValue>{userData.plan}</InfoValue>
+          </InfoRow>
+          <InfoRow>
+            <InfoLabel>Phone Number</InfoLabel>
+            <InfoValue>{userData.phone || 'Not provided'}</InfoValue>
           </InfoRow>
         </AccountInfo>
       </ContentSection>
@@ -356,6 +364,13 @@ const UserProfile = () => {
           ))}
         </MovieGrid>
       </ContentSection>
+
+      <EditProfileModal
+        isOpen={isEditModalOpen}
+        onClose={() => setIsEditModalOpen(false)}
+        currentUser={userData}
+        onSave={handleProfileUpdate}
+      />
     </ProfileContainer>
   );
 };
