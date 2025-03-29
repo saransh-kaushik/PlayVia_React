@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import loginBG from '../../assets/loginBG.jpg';
+import Logo from '../Logo/Logo';
+
 //login CSS
 const LoginContainer = styled.div`
   width: 100%;
@@ -47,21 +49,6 @@ const Header = styled.div`
 
   @media (max-width: 768px) {
     padding: 20px 30px;
-  }
-`;
-
-const Logo = styled.img`
-  width: 150px;
-  cursor: pointer;
-  filter: brightness(1.1);
-  transition: transform 0.2s ease;
-
-  &:hover {
-    transform: scale(1.05);
-  }
-
-  @media (max-width: 768px) {
-    width: 100px;
   }
 `;
 
@@ -204,6 +191,10 @@ const HelpLink = styled.a`
   }
 `;
 
+const LogoContainer = styled.div`
+  padding: 5px 0;
+`;
+
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -234,11 +225,9 @@ const Login = () => {
   return (
     <LoginContainer>
       <Header>
-        <Logo
-          src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" //using netflix logo
-          alt="Netflix"
-          onClick={() => navigate('/')}
-        />
+        <LogoContainer>
+          <Logo size="32px" onClick={() => navigate('/')} />
+        </LogoContainer>
       </Header>
 
       <LoginBox>

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import loginBG from '../../assets/loginBG.jpg';
+import Logo from '../Logo/Logo';
 
 const SignUpContainer = styled.div`
   width: 100%;
@@ -53,19 +54,8 @@ const SignUpHeader = styled.div`
   }
 `;
 
-const Logo = styled.img`
-  width: 150px;
-  cursor: pointer;
-  filter: brightness(1.1);
-  transition: transform 0.2s ease;
-
-  &:hover {
-    transform: scale(1.05);
-  }
-
-  @media (max-width: 768px) {
-    width: 100px;
-  }
+const LogoContainer = styled.div`
+  padding: 5px 0;
 `;
 
 const SignInButton = styled.button`
@@ -235,11 +225,9 @@ const SignUp = () => {
   return (
     <SignUpContainer>
       <SignUpHeader>
-        <Logo
-          src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"
-          alt="Netflix"
-          onClick={() => navigate('/')}
-        />
+        <LogoContainer>
+          <Logo size="32px" onClick={() => navigate('/')} />
+        </LogoContainer>
         <SignInButton onClick={() => navigate('/login')}>Sign In</SignInButton>
       </SignUpHeader>
 

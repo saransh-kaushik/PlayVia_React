@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { FaSearch, FaBell, FaCaretDown, FaSignOutAlt, FaUser } from 'react-icons/fa';
 import { AuthContext } from '../../context/AuthContext';
+import Logo from '../Logo/Logo';
 
 const Nav = styled.nav`
   position: fixed;
@@ -22,9 +23,8 @@ const Nav = styled.nav`
   }
 `;
 
-const Logo = styled.img`
-  width: 100px;
-  object-fit: contain;
+const LogoContainer = styled.div`
+  padding: 5px 0;
 `;
 
 const NavItems = styled.div`
@@ -138,10 +138,9 @@ const Navbar = () => {
   return (
     <Nav show={show}>
       <Link to="/">
-        <Logo
-          src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"
-          alt="Netflix Logo"
-        />
+        <LogoContainer>
+          <Logo size="24px" />
+        </LogoContainer>
       </Link>
       <NavItems>
         <NavItem>

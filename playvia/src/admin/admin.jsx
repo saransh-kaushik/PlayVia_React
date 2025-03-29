@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import styled from 'styled-components';
 import { FaUsers, FaFilm, FaChartBar, FaUpload, FaEdit, FaTrash, FaSearch, FaCloudUploadAlt, FaImage } from 'react-icons/fa';
+import Logo from '../components/Logo/Logo';
 
 const AdminContainer = styled.div`
   min-height: 100vh;
@@ -18,8 +19,7 @@ const Sidebar = styled.div`
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
 `;
 
-const Logo = styled.img`
-  width: 120px;
+const LogoContainer = styled.div`
   margin-bottom: 40px;
 `;
 
@@ -643,10 +643,9 @@ const AdminDashboard = () => {
   return (
     <AdminContainer>
       <Sidebar>
-        <Logo
-          src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"
-          alt="Netflix"
-        />
+        <LogoContainer>
+          <Logo size="28px" />
+        </LogoContainer>
         <MenuItem 
           active={activeTab === 'dashboard'} 
           onClick={() => setActiveTab('dashboard')}

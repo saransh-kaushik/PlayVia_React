@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import loginBG from '../../assets/loginBG.jpg';
+import Logo from '../Logo/Logo';
 
 const OTPContainer = styled.div`
   width: 100%;
@@ -50,19 +51,8 @@ const Header = styled.div`
   }
 `;
 
-const Logo = styled.img`
-  width: 150px;
-  cursor: pointer;
-  filter: brightness(1.1);
-  transition: transform 0.2s ease;
-
-  &:hover {
-    transform: scale(1.05);
-  }
-
-  @media (max-width: 768px) {
-    width: 100px;
-  }
+const LogoContainer = styled.div`
+  padding: 5px 0;
 `;
 
 const OTPBox = styled.div`
@@ -264,11 +254,9 @@ const EnterOTP = () => {
   return (
     <OTPContainer>
       <Header>
-        <Logo
-          src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"
-          alt="Netflix"
-          onClick={() => navigate('/')}
-        />
+        <LogoContainer>
+          <Logo size="32px" onClick={() => navigate('/')} />
+        </LogoContainer>
       </Header>
 
       <OTPBox>
