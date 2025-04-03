@@ -242,13 +242,13 @@ const UserProfile = () => {
 
   // Mock data - replace with actual data from your backend
   const [userData, setUserData] = useState({
-    name: 'John Doe',
-    email: 'john.doe@example.com',
-    phone: '+1 234 567 8900',
+    name: 'Saransh Kaushik',
+    email: 'test@1.com',
+    phone: '1234567890',
     membership: 'Premium',
     memberSince: 'January 2024',
     nextBilling: 'February 15, 2024',
-    plan: 'Premium UHD',
+    plan: 'Premium',
     profileImage: null
   });
 

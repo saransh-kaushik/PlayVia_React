@@ -12,7 +12,8 @@ import Footer from './components/Footer/Footer';
 import ForgetPassword from './components/Forget/forget';
 import AdminDashboard from './admin/admin';
 import { AuthContext, AuthProvider } from './context/AuthContext';
-
+import Payment from './components/Payment/Payment';
+import PaymentGateway from './components/Payment/paymentGateway';
 const AppContainer = styled.div`
   background-color: #111;
   min-height: 100vh;
@@ -46,6 +47,8 @@ function App() {
             <Route path="/signup" element={<SignUp />} />
             <Route path="/enter-otp" element={<EnterOTP />} />
             <Route path="/forget" element={<ForgetPassword />} />
+            <Route path="/payment" element={<Payment />} />
+            <Route path="/payment-gateway" element={<PaymentGateway/>}/>
             <Route
   path="/admin"
   element={
