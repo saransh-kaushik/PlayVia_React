@@ -197,29 +197,50 @@ const ErrorMessage = styled.div`
 `;
 
 const SignUp = () => {
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [profilePicture, setProfilePicture] = useState(null);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     setLoading(true);
 
-    if (!email || !password) {
+    if (!username || !email || !password || !profilePicture) {
       setError('Please fill in all fields');
       setLoading(false);
       return;
     }
 
-    // Mock signup process
-    setTimeout(() => {
+    try {
+      const formData = new FormData();
+      formData.append('username', username);
+      formData.append('email', email);
+      formData.append('password', password);
+      formData.append('profilePicture', profilePicture);
+
+      const response = await fetch('https://your-backend-url.com/api/signup', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Something went wrong');
+      }
+
       // Navigate to OTP page with email
-      navigate('/enter-otp', { state: { email } });
+      // navigate('/enter-otp', { state: { email } });
+    } catch (err) {
+      setError(err.message);
+    } finally {
       setLoading(false);
-    }, 1500);
+    }
   };
 
   return (
@@ -232,12 +253,21 @@ const SignUp = () => {
       </SignUpHeader>
 
       <SignUpContent>
-        <Title>Unlimited movies, TV shows, and more</Title>
-        <Subtitle>Watch anywhere. Cancel anytime.</Subtitle>
-        <Text>Ready to watch? Enter your email to create or restart your membership.</Text>
+        <Title>Create Your Account</Title>
+        <Subtitle>Join us and start your journey today.</Subtitle>
+        <Text>Fill in the details below to create your account.</Text>
 
         <SignUpForm onSubmit={handleSubmit}>
           {error && <ErrorMessage>{error}</ErrorMessage>}
+          <InputGroup>
+            <Input
+              type="text"
+              placeholder="Username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+          </InputGroup>
           <InputGroup>
             <Input
               type="email"
@@ -246,6 +276,8 @@ const SignUp = () => {
               onChange={(e) => setEmail(e.target.value)}
               required
             />
+          </InputGroup>
+          <InputGroup>
             <Input
               type="password"
               placeholder="Password"
@@ -253,10 +285,18 @@ const SignUp = () => {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-            <GetStartedButton type="submit" disabled={loading}>
-              {loading ? 'Please wait...' : 'Get Started'}
-            </GetStartedButton>
           </InputGroup>
+          <InputGroup>
+            <Input
+              type="file"
+              accept="image/*"
+              onChange={(e) => setProfilePicture(e.target.files[0])}
+              required
+            />
+          </InputGroup>
+          <GetStartedButton type="submit" disabled={loading}>
+            {loading ? 'Creating Account...' : 'Sign Up'}
+          </GetStartedButton>
         </SignUpForm>
       </SignUpContent>
     </SignUpContainer>
